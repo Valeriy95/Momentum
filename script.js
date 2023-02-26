@@ -405,7 +405,6 @@ function changeLanguagesEnRu (str) {
       showGreeting('ru');
       getWeather('ru');
       showDate('ru');
-      console.log('clickRU');
       if (names.value == '[Enter name]') {
          names.value = 'Введите имя';
       };
@@ -445,7 +444,6 @@ function changeLanguagesEnRu (str) {
       showGreeting('en');
       getWeather('en');
       showDate('en');
-      console.log('clickEN');
        if (names.value == 'Введите имя') {
          names.value = '[Enter name]';
       };
@@ -973,4 +971,3 @@ function deleteEditCheckedTask (e) {
    }
 };
 
-console.log('Score: 150/150')
