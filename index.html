@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
+</head>
+<body>
+  <header class="header">
+    <div class="player">
+      <div class="player-controls">
+        <button class="play-prev player-icon"></button>
+        <button class="play player-icon"></button>
+        <button class="play-next player-icon"></button>
+      </div>
+      <ul class="play-list"></ul>
+    </div>
+    <div class="wrapper-player hidden">
+      <div class="song-name"></div>
+      <div class="wrapper-player1">
+        <button class="play-prev player-icon btn-prev-pl"></button>
+        <button class="play player-icon btn-play-pl"></button>
+        <button class="play-next player-icon btn-next-pl"></button>
+        <div class="progress-container">
+          <div class="progress"></div>
+        </div>
+        <div class="song-duraction"></div>
+        <div class="volume"></div>
+        <input class="range" min="0" max="100" value="50" type="range">
+      </div>
+    </div>
+    <div class="weather">
+      <input type="text" class="city" />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <time class="time"></time>
+    <date class="date"></date>
+    <div class="greeting-container">
+      <span class="greeting"></span>
+      <input type="text" class="names" value="[Enter name]"/>
+    </div>
+  </main>
+  <footer class="footer">
+    <button class="change-quote"></button>
+    <div class="wrapper-footer">
+      <div class="wrapper-icon">
+        <div class="icon-container">
+          <div class="setting-icon"></div>
+          <a href="https://github.com/Valeriy95"><img class="github-icon" src="assets/svg/icons8-github-30 (2).png" alt="github"></a>
+          <a href="https://rs.school/js/"><img class="rss-icon" src="assets/svg/rs_school_js.svg" alt="github"></a>
+          <p class="year">2023</p>
+        </div>
+        <div class="setting-container">
+          <div class='language-container'>
+          <div class="languages">Language</div>
+          <form action="langenru">
+            <label>
+              <span class='langBtnSet'><input name="lang" type="radio" value="en">English</span>
+            </label>
+            <label>
+              <span class='langBtnSet'><input name="lang" type="radio" value="ru">Русский</span>
+            </label>
+          </form>
+          </div>
+          <div>
+          <div class="image-collection">Image collection</div>
+          <form class='imgBtn' action="imagecollection">
+            <label>
+              <span class='langBtnSet'><input name="imgcollection" type="radio" value="github">GitHub</span>
+            </label>
+            <div class='unsplash-container'>
+            <label>
+              <span class='langBtnSet'><input name="imgcollection" type="radio" value="unsplash">Unsplash API</span>
+            </label>
+              <div class='tagBtn1'>Tag</div>
+            </div>
+            <div class='flickr-container'>
+            <label>
+              <span class='langBtnSet'><input name="imgcollection" type="radio" value="flickr">Flickr API</span>
+            </label>
+            <div class='tagBtn2'>Tag</div>
+            </div>
+          </form>
+          </div>
+          <div>
+            <div class="hide-block">Hide/show blocks</div>
+            <div class="hide-block-container hidden">
+              <div class='hide-bloc-close'>
+                <span class='close-icon-hide1'></span>
+                <span class='close-icon-hide2'></span>
+              </div>
+                <div>
+                  <label>
+                    <input class='hide-bloc-mar' name="time" type="checkbox" value="time"><span class='langBtnSet input-time-h'>Time</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input class='hide-bloc-mar' name="date" type="checkbox" value="date"><span  class='langBtnSet input-date-h'>Date</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input class='hide-bloc-mar' name="greeting" type="checkbox" value="greeting"><span class='langBtnSet input-greeting-h'>Greeting</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input class='hide-bloc-mar' name="quote" type="checkbox" value="quote"><span class='langBtnSet input-quote-h'>Quote</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input class='hide-bloc-mar' name="weather" type="checkbox" value="weather"><span class='langBtnSet input-weather-h'>Weather</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                  <input class='hide-bloc-mar' name="audio" type="checkbox" value="audio"><span class='langBtnSet input-audio-h'>Audio</span>
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    <input class="hide-bloc-mar" name="todolist" type="checkbox" value="todolist"><span class='langBtnSet'>Todolist</span>
+                  </label>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+      <div class="wrapper-icon-todo">
+        <div class='todo-icon'>ToDo</div>
+        <div class="wrapper-todo hidden">
+          <div class="todo-container">
+            <div class="todo-input">
+               <input class="input-ToDo" type="text" placeholder="New ToDo">
+            </div>
+            <div class="buttons">
+                <div class="btn-pen-comp">
+                  <span id="progress" class="progress-btn active">In progress</span>
+                  <span id="done" class="done-btn">Done</span>
+                </div>
+                <button class="btn-clear">Clear All</button>
+            </div>
+          </div>
+          <ul class="list-container"></ul>
+        </div>
+      </div>
+  </footer>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
