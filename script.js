@@ -233,7 +233,6 @@ async function getQuotesRu() {
 
 // 6. Аудиоплеер
 
-
 let isPlay = false;
 let playNum = 0;
 const audio = new Audio();
@@ -246,6 +245,8 @@ const wrapperPlayer = document.querySelector('.wrapper-player');
 const playBtnPl = document.querySelector('.btn-play-pl');
 const playNextBtnPl = document.querySelector('.btn-next-pl');
 const playPrevBtnPl = document.querySelector('.btn-prev-pl');
+let isProgress = false;
+let audioCurrentTime;
 
 playBtn.addEventListener('click', playAudio);
 playBtnPl.addEventListener('click', playAudio);
@@ -253,10 +254,13 @@ function playAudio() {
   let styleActive = document.querySelector(`.num${playNum}`);
   styleActive.classList.add('item-active');
   wrapperPlayer.classList.remove('hidden');
-  
   songname.textContent = playList[playNum].title;
   audio.src = playList[playNum].src;
-  audio.currentTime = 0;
+  if (isProgress == true) {
+   audio.currentTime = audioCurrentTime;
+  } else {
+   audio.currentTime = 0;
+  }
   if(!isPlay) {
   audio.play();
   isPlay = true;
@@ -272,6 +276,7 @@ function playAudio() {
 
 function songTime() {
    songDuraction.textContent = `${currentTimeDuration(audio.currentTime)} / ${currentTimeDuration(audio.duration)}`;
+   audioCurrentTime = audio.currentTime;
    setTimeout(songTime, 1000);
 };
 songTime();
@@ -350,6 +355,8 @@ function setProgress(e) {
    const clickX = e.offsetX;
    const duration = audio.duration;
    audio.currentTime = (clickX / width) * duration;
+   isProgress = true;
+   audioCurrentTime = audio.currentTime;
 };
 
 progressContainer.addEventListener("click", setProgress);
