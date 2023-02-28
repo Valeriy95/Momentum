@@ -335,6 +335,7 @@ const progressContainer = document.querySelector(".progress-container");
 const volumeBtn = document.querySelector('.volume');
 const range = document.querySelector('.range');
 let counterVolume = 0;
+let volumeLevel;
 
 function updateProgress (e) {
    const {duration, currentTime} = e.srcElement;
@@ -357,6 +358,9 @@ audio.addEventListener('ended', playNext);
 
 range.addEventListener('change', function () {
    audio.volume = range.value / 100;
+   volumeLevel = audio.volume;
+   counterVolume++;
+   volumeBtn.style.opacity = '1';
 });
 
 volumeBtn.addEventListener('click', volumeMuteBtn);
@@ -368,7 +372,7 @@ function volumeMuteBtn () {
     volumeBtn.style.opacity = '0.5';
   } 
   if (counterVolume % 2 == 0) {
-    audio.volume = 1;
+    audio.volume = volumeLevel;
     volumeBtn.style.opacity = '1';
   }
 };
