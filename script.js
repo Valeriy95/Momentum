@@ -174,7 +174,8 @@ async function getWeather(lang = 'en') {
 getWeather();
 
 function change() {
- getWeather();
+   getLocalLanguage();
+   getWeather(chancelanguage.value);
 };
 
 function setLocalWeather() {
