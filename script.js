@@ -109,32 +109,28 @@ const slideNext = document.querySelector('.slide-next');
 slideNext.addEventListener('click', getSlideNext);
 
 function getSlideNext() {
-   if (changeImageAPI.value == 'github') {
-     (randomNum < 20) ? randomNum++ : randomNum = 1;
-      setBg(); 
-   };
-   if (changeImageAPI.value == 'unsplash') {
+    if (changeImageAPI.value == 'unsplash') {
       getLinkToImageUnsplash(changeImageAPI.value);
-   };
-   if (changeImageAPI.value == 'flickr') {
+   } else if (changeImageAPI.value == 'flickr') {
       getLinkToImageUnsplash(changeImageAPI.value);  
-   };
+   } else {
+      (randomNum < 20) ? randomNum++ : randomNum = 1;
+      setBg();
+   }
 };
 
 const slidePrev = document.querySelector('.slide-prev');
 slidePrev.addEventListener('click', getSlidePrev);
 
 function getSlidePrev() {
-   if (changeImageAPI.value == 'github') {
+    if (changeImageAPI.value == 'unsplash') {
+      getLinkToImageUnsplash(changeImageAPI.value);
+   } else if (changeImageAPI.value == 'flickr') {
+      getLinkToImageUnsplash(changeImageAPI.value);  
+   } else {
       (randomNum > 1) ? randomNum-- : randomNum = 20;
       setBg();
-   };
-   if (changeImageAPI.value == 'unsplash') {
-      getLinkToImageUnsplash(changeImageAPI.value);
-   };
-   if (changeImageAPI.value == 'flickr') {
-      getLinkToImageUnsplash(changeImageAPI.value);  
-   };
+   }
 };
 
 // Виджет погоды
