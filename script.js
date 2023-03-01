@@ -174,7 +174,8 @@ async function getWeather(lang = 'en') {
 getWeather();
 
 function change() {
- getWeather();
+   getLocalLanguage();
+   getWeather(chancelanguage.value);
 };
 
 function setLocalWeather() {
@@ -233,7 +234,6 @@ async function getQuotesRu() {
 
 // 6. Аудиоплеер
 
-
 let isPlay = false;
 let playNum = 0;
 const audio = new Audio();
@@ -246,6 +246,8 @@ const wrapperPlayer = document.querySelector('.wrapper-player');
 const playBtnPl = document.querySelector('.btn-play-pl');
 const playNextBtnPl = document.querySelector('.btn-next-pl');
 const playPrevBtnPl = document.querySelector('.btn-prev-pl');
+let isProgress = false;
+let audioCurrentTime;
 
 playBtn.addEventListener('click', playAudio);
 playBtnPl.addEventListener('click', playAudio);
@@ -253,10 +255,13 @@ function playAudio() {
   let styleActive = document.querySelector(`.num${playNum}`);
   styleActive.classList.add('item-active');
   wrapperPlayer.classList.remove('hidden');
-  
   songname.textContent = playList[playNum].title;
   audio.src = playList[playNum].src;
-  audio.currentTime = 0;
+  if (isProgress == true) {
+   audio.currentTime = audioCurrentTime;
+  } else {
+   audio.currentTime = 0;
+  }
   if(!isPlay) {
   audio.play();
   isPlay = true;
@@ -272,6 +277,7 @@ function playAudio() {
 
 function songTime() {
    songDuraction.textContent = `${currentTimeDuration(audio.currentTime)} / ${currentTimeDuration(audio.duration)}`;
+   audioCurrentTime = audio.currentTime;
    setTimeout(songTime, 1000);
 };
 songTime();
@@ -335,6 +341,7 @@ const progressContainer = document.querySelector(".progress-container");
 const volumeBtn = document.querySelector('.volume');
 const range = document.querySelector('.range');
 let counterVolume = 0;
+let volumeLevel;
 
 function updateProgress (e) {
    const {duration, currentTime} = e.srcElement;
@@ -349,6 +356,8 @@ function setProgress(e) {
    const clickX = e.offsetX;
    const duration = audio.duration;
    audio.currentTime = (clickX / width) * duration;
+   isProgress = true;
+   audioCurrentTime = audio.currentTime;
 };
 
 progressContainer.addEventListener("click", setProgress);
@@ -357,6 +366,9 @@ audio.addEventListener('ended', playNext);
 
 range.addEventListener('change', function () {
    audio.volume = range.value / 100;
+   volumeLevel = audio.volume;
+   counterVolume++;
+   volumeBtn.style.opacity = '1';
 });
 
 volumeBtn.addEventListener('click', volumeMuteBtn);
@@ -368,7 +380,7 @@ function volumeMuteBtn () {
     volumeBtn.style.opacity = '0.5';
   } 
   if (counterVolume % 2 == 0) {
-    audio.volume = 1;
+    audio.volume = volumeLevel;
     volumeBtn.style.opacity = '1';
   }
 };
