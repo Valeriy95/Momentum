@@ -589,31 +589,47 @@ window.addEventListener('load', getLocalImageAPI);
 
 const tagBtn1 = document.querySelector('.tagBtn1');
 const tagBtn2 = document.querySelector('.tagBtn2');
+const modal = document.querySelector('.modal');
+const modalTitle = document.querySelector('.modal_title');
+const modalInput = document.querySelector('.modal_input');
+const modalBtn = document.querySelector('.modal_btn');
+let isUnsplash = true;
 tagBtn1.addEventListener('click', tagChangeUnsplash);
 tagBtn2.addEventListener('click', tagChangeFlickr);
+modalBtn.addEventListener('click', sendInputtoAPI);
 
 function tagChangeUnsplash () {
-   getLocalLanguage()
+   isUnsplash = true;
+   getLocalLanguage();
+   modal.classList.remove('hidden');
    if (chancelanguage.value == 'ru') {
-      timeOfDayUnsplash = prompt('Введите тег для Unsplash API. Например: природа')
+      modalTitle.innerHTML = 'Введите тег для Unsplash API. Например: природа'
+   } else {
+      modalTitle.innerHTML = 'Enter tag for Unsplash API. For example: nature'
    }
-   if (chancelanguage.value == 'en') {
-      timeOfDayUnsplash = prompt('Enter tag for Unsplash API. For example: nature');
-   }
-   getLinkToImageUnsplash(changeImageAPI.value);
 }
 
 function tagChangeFlickr () {
-   getLocalLanguage()
+   isUnsplash = false;
+   getLocalLanguage();
+   modal.classList.remove('hidden');
    if (chancelanguage.value == 'ru') {
-      timeOfDayFlickr = prompt('Введите тег для Flickr API. Например: природа');
+      modalTitle.innerHTML = 'Введите тег для Flickr API. Например: природа'
+   } else {
+      modalTitle.innerHTML = 'Enter tag for Flickr API. For example: nature'
    }
-   if (chancelanguage.value == 'en') {
-      timeOfDayFlickr = prompt('Enter tag for Flickr API. For example: nature');
-   }
-   getLinkToImageUnsplash(changeImageAPI.value);
 }
 
+function sendInputtoAPI() {
+   if (isUnsplash === true) {
+      timeOfDayUnsplash = modalInput.value;
+   } else {
+      timeOfDayFlickr = modalInput.value;
+   }
+   modalInput.value = '';
+   modal.classList.add('hidden');
+   getLinkToImageUnsplash(changeImageAPI.value);
+}
 
 const hideBlocBtn = document.querySelector('.hide-block');
 const hideContainer = document.querySelector('.hide-block-container');
